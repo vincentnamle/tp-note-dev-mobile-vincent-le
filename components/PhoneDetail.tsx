@@ -1,8 +1,16 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from "react-native";
 import { NavigationProp, RouteProp } from "@react-navigation/native";
 import tw from "tailwind-react-native-classnames";
 import { Phone } from "../models/model";
+import { favoritesAtom } from "../state/state";
+import { useRecoilState } from "recoil";
 
 type PhoneDetailRouteProp = RouteProp<
   { PhoneDetail: { phone: Phone } },
@@ -16,6 +24,17 @@ type Props = {
 
 export default function PhoneDetail({ route, navigation }: Props) {
   const { phone } = route.params;
+  const [favorites, setFavorites] = useRecoilState(favoritesAtom);
+
+  const isFavorite = favorites.some((fav) => fav.id === phone.id);
+
+  function toggleFavorite(event: GestureResponderEvent): void {
+    setFavorites((prevFavorites) =>
+      isFavorite
+        ? prevFavorites.filter((fav) => fav.id !== phone.id)
+        : [...prevFavorites, phone]
+    );
+  }
 
   return (
     <View style={tw`flex-1 flex-col p-4`}>
@@ -58,10 +77,14 @@ export default function PhoneDetail({ route, navigation }: Props) {
 
       <View style={tw`flex-1 justify-center items-center`}>
         <TouchableOpacity
-          style={tw`bg-green-500 p-4 rounded-lg w-1/2`}
-          onPress={() => console.log("Bouton cliqué")}
+          style={tw`p-4 rounded-lg w-1/2 ${
+            isFavorite ? "bg-red-500" : "bg-green-500"
+          }`}
+          onPress={toggleFavorite}
         >
-          <Text style={tw`text-white text-center text-lg font-bold`}>TEST</Text>
+          <Text style={tw`text-white text-center text-lg font-bold`}>
+            {isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
