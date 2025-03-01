@@ -1,16 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import tw from "tailwind-react-native-classnames";
 import PhoneList from "./components/PhoneList";
 import PhoneDetail from "./components/PhoneDetail";
-
 import { RecoilRoot } from "recoil";
 import { Phone } from "./models/model";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import FavoritesList from "./components/FavoritesList";
+import { TouchableOpacity } from "react-native";
 
 type RootStackParamList = {
   PhoneList: undefined;
@@ -25,18 +22,14 @@ export default function App() {
     <RecoilRoot>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="PhoneList" id={undefined}>
-          {/* Liste des annonces (Sans bouton retour) */}
           <Stack.Screen
             name="PhoneList"
             component={PhoneList}
             options={{
               title: "Liste des annonces",
-              headerLeft: () => null, // Supprime le bouton retour
-              // Cache la flèche de retour par défaut
+              headerLeft: () => null,
             }}
           />
-
-          {/* Détail de l'annonce (Avec bouton retour) */}
           <Stack.Screen
             name="PhoneDetail"
             component={PhoneDetail}
@@ -52,15 +45,12 @@ export default function App() {
               ),
             })}
           />
-
-          {/* Liste des Favoris (Sans bouton retour) */}
           <Stack.Screen
             name="FavoritesList"
             component={FavoritesList}
             options={{
               title: "Mes Favoris",
-              headerLeft: () => null, // Supprime le bouton retour
-              // Cache la flèche de retour par défaut
+              headerLeft: () => null,
             }}
           />
         </Stack.Navigator>
