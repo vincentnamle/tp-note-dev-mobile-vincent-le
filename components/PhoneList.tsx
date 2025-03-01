@@ -6,6 +6,7 @@ import { phonesAtom } from "../state/state";
 import { FlatList } from "react-native";
 import PhoneItem from "./PhoneItem";
 import tw from 'tailwind-react-native-classnames';
+import { useState } from "react";
 
 type Props = {
   navigation: NavigationProp<any>;
@@ -13,10 +14,17 @@ type Props = {
 
 export default function PhoneList({ navigation }: Props) {
   const phones = useRecoilValue(phonesAtom);
+  const [query, setQuery] = useState('');
+
+  const filteredPhones = phones.filter((phone) =>
+    phone.model.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <View>
-      <Text style={tw`p-3`}>Nombre d'annonces : {phones.length}</Text>
+      <Text style={{ margin: 10 }}>
+        Nombre d'annonces : {filteredPhones.length}
+      </Text>
       <FlatList
         data={phones}
         keyExtractor={(item) => item.id}
