@@ -30,7 +30,7 @@ export default function PhoneList({ navigation }: Props) {
         </TouchableOpacity>
       </View>
       <Text style={tw`p-3 mb-3`}>
-        Nombre d'annonces : {filteredPhones.length}
+        Nombre de favoris : {filteredPhones.length}
       </Text>
       <TextInput
         style={tw`h-10 border mx-3 mb-3 px-3 rounded`}
