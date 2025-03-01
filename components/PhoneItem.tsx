@@ -12,10 +12,10 @@ const PhoneItem: React.FC<PhoneItemProps> = ({ phone }) => {
   return (
     <View style={tw`p-3 border-b`}>
       <Text style={tw`text-lg font-bold`}>{phone.model}</Text>
-      <Text style={tw`text-base text-gray-600`}>
+      <Text style={tw`text-base`}>
         {phone.releaseDate} - {phone.price} €
       </Text>
-      <Text style={tw`text-base text-gray-600`}>
+      <Text style={tw`text-base`}>
         {phone.description}
       </Text>
     </View>
