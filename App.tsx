@@ -10,10 +10,12 @@ import { RecoilRoot } from "recoil";
 import { Phone } from "./models/model";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import FavoritesList from "./components/FavoritesList";
 
 type RootStackParamList = {
   PhoneList: undefined;
   PhoneDetail: { phone: Phone };
+  FavoritesList: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -23,11 +25,18 @@ export default function App() {
     <RecoilRoot>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="PhoneList" id={undefined}>
+          {/* Liste des annonces (Sans bouton retour) */}
           <Stack.Screen
             name="PhoneList"
             component={PhoneList}
-            options={{ title: "Liste des annonces" }}
+            options={{
+              title: "Liste des annonces",
+              headerLeft: () => null, // Supprime le bouton retour
+              // Cache la flèche de retour par défaut
+            }}
           />
+
+          {/* Détail de l'annonce (Avec bouton retour) */}
           <Stack.Screen
             name="PhoneDetail"
             component={PhoneDetail}
@@ -43,17 +52,19 @@ export default function App() {
               ),
             })}
           />
+
+          {/* Liste des Favoris (Sans bouton retour) */}
+          <Stack.Screen
+            name="FavoritesList"
+            component={FavoritesList}
+            options={{
+              title: "Mes Favoris",
+              headerLeft: () => null, // Supprime le bouton retour
+              // Cache la flèche de retour par défaut
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </RecoilRoot>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -1,5 +1,6 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
+import { Phone } from "../models/model";
 import { useRecoilValue } from "recoil";
 import { favoritesAtom, phonesAtom } from "../state/state";
 import { FlatList } from "react-native";
@@ -12,11 +13,10 @@ type Props = {
 };
 
 export default function PhoneList({ navigation }: Props) {
-  const phones = useRecoilValue(phonesAtom);
   const favorites = useRecoilValue(favoritesAtom);
   const [query, setQuery] = useState("");
 
-  const filteredPhones = phones.filter((phone) =>
+  const filteredPhones = favorites.filter((phone) =>
     phone.model.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -24,10 +24,10 @@ export default function PhoneList({ navigation }: Props) {
     <View style={tw`flex-1 p-4`}>
       <View style={tw`flex-row justify-center`}>
         <TouchableOpacity
-          style={tw`bg-green-500 px-4 py-2 rounded-lg`}
-          onPress={() => navigation.navigate("FavoritesList")}
+          style={tw`bg-blue-500 px-4 py-2 rounded-lg`}
+          onPress={() => navigation.navigate("PhoneList")}
         >
-          <Text style={tw`text-white font-bold`}>Mes favoris : {favorites.length}</Text>
+          <Text style={tw`text-white font-bold`}>Annonces</Text>
         </TouchableOpacity>
       </View>
 

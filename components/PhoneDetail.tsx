@@ -28,12 +28,16 @@ export default function PhoneDetail({ route, navigation }: Props) {
 
   const isFavorite = favorites.some((fav) => fav.id === phone.id);
 
-  function toggleFavorite(event: GestureResponderEvent): void {
+  function onAddToFavorites(event: GestureResponderEvent): void {
+    setFavorites((prevFavorites) => [...prevFavorites, phone]);
+    navigation.navigate("FavoritesList");
+  }
+
+  function onRemoveToFavorites(event: GestureResponderEvent): void {
     setFavorites((prevFavorites) =>
-      isFavorite
-        ? prevFavorites.filter((fav) => fav.id !== phone.id)
-        : [...prevFavorites, phone]
+      prevFavorites.filter((fav) => fav.id !== phone.id)
     );
+    navigation.navigate("PhoneList");
   }
 
   return (
@@ -76,16 +80,25 @@ export default function PhoneDetail({ route, navigation }: Props) {
       </View>
 
       <View style={tw`flex-1 justify-center items-center`}>
-        <TouchableOpacity
-          style={tw`p-4 rounded-lg w-1/2 ${
-            isFavorite ? "bg-red-500" : "bg-green-500"
-          }`}
-          onPress={toggleFavorite}
-        >
-          <Text style={tw`text-white text-center text-lg font-bold`}>
-            {isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
-          </Text>
-        </TouchableOpacity>
+        {isFavorite ? (
+          <TouchableOpacity
+            style={tw`p-4 rounded-lg w-1/2 bg-red-500`}
+            onPress={onRemoveToFavorites}
+          >
+            <Text style={tw`text-white text-center text-lg font-bold`}>
+              Retirer des favoris
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={tw`p-4 rounded-lg w-1/2 bg-green-500`}
+            onPress={onAddToFavorites}
+          >
+            <Text style={tw`text-white text-center text-lg font-bold`}>
+              Ajouter aux favoris
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
