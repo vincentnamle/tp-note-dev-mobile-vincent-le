@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { Phone } from "../models/model";
 import { useRecoilValue } from "recoil";
@@ -35,7 +35,16 @@ export default function PhoneList({ navigation }: Props) {
       <FlatList
         data={filteredPhones}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <PhoneItem phone={item} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("PhoneDetail", { phone: item })
+            }
+            style={tw`mb-3`}
+          >
+            <PhoneItem phone={item} />
+          </TouchableOpacity>
+        )}
       />
     </View>
   );

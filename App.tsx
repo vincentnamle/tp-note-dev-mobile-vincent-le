@@ -4,11 +4,14 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import PhoneList from "./components/PhoneList";
+import PhoneDetail from "./components/PhoneDetail";
+
 import { RecoilRoot } from "recoil";
+import { Phone } from "./models/model";
 
 type RootStackParamList = {
   PhoneList: undefined;
-  Detail: undefined;
+  PhoneDetail: { phone: Phone };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -23,6 +26,7 @@ export default function App() {
             component={PhoneList}
             options={{ title: "Liste des annonces" }}
           />
+          <Stack.Screen name="PhoneDetail" component={PhoneDetail} options={{ title: "Anonce" }} />
         </Stack.Navigator>
       </NavigationContainer>
     </RecoilRoot>
