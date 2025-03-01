@@ -86,7 +86,7 @@ export default function PhoneDetail({ route, navigation }: Props) {
             onPress={onRemoveToFavorites}
           >
             <Text style={tw`text-white text-center text-lg font-bold`}>
-              Retirer des favoris
+              Retirer favoris
             </Text>
           </TouchableOpacity>
         ) : (
@@ -95,7 +95,7 @@ export default function PhoneDetail({ route, navigation }: Props) {
             onPress={onAddToFavorites}
           >
             <Text style={tw`text-white text-center text-lg font-bold`}>
-              Ajouter aux favoris
+              Ajouter favoris
             </Text>
           </TouchableOpacity>
         )}

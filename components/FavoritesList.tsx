@@ -1,8 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { Phone } from "../models/model";
 import { useRecoilValue } from "recoil";
-import { favoritesAtom, phonesAtom } from "../state/state";
+import { favoritesAtom } from "../state/state";
 import { FlatList } from "react-native";
 import PhoneItem from "./PhoneItem";
 import tw from "tailwind-react-native-classnames";
@@ -30,11 +29,9 @@ export default function PhoneList({ navigation }: Props) {
           <Text style={tw`text-white font-bold`}>Annonces</Text>
         </TouchableOpacity>
       </View>
-
       <Text style={tw`p-3 mb-3`}>
         Nombre d'annonces : {filteredPhones.length}
       </Text>
-
       <TextInput
         style={tw`h-10 border mx-3 mb-3 px-3 rounded`}
         placeholder="Rechercher un téléphone..."

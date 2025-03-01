@@ -1,8 +1,7 @@
-// src/components/PhoneItem.tsx
-import React from 'react';
-import { View, Text } from 'react-native';
-import { Phone } from '../state/state';
-import tw from 'tailwind-react-native-classnames';
+import React from "react";
+import { View, Text } from "react-native";
+import { Phone } from "../state/state";
+import tw from "tailwind-react-native-classnames";
 
 interface PhoneItemProps {
   phone: Phone;
@@ -15,9 +14,7 @@ const PhoneItem: React.FC<PhoneItemProps> = ({ phone }) => {
       <Text style={tw`text-base`}>
         {phone.releaseDate} - {phone.price} €
       </Text>
-      <Text style={tw`text-base`}>
-        {phone.description}
-      </Text>
+      <Text style={tw`text-base`}>{phone.description}</Text>
     </View>
   );
 };

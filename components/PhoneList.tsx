@@ -27,14 +27,14 @@ export default function PhoneList({ navigation }: Props) {
           style={tw`bg-green-500 px-4 py-2 rounded-lg`}
           onPress={() => navigation.navigate("FavoritesList")}
         >
-          <Text style={tw`text-white font-bold`}>Mes favoris : {favorites.length}</Text>
+          <Text style={tw`text-white font-bold`}>
+            Mes favoris : {favorites.length}
+          </Text>
         </TouchableOpacity>
       </View>
-
       <Text style={tw`p-3 mb-3`}>
         Nombre d'annonces : {filteredPhones.length}
       </Text>
-
       <TextInput
         style={tw`h-10 border mx-3 mb-3 px-3 rounded`}
         placeholder="Rechercher un téléphone..."
