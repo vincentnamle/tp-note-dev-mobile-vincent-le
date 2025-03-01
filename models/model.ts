@@ -3,11 +3,11 @@ export class Phone {
     public model: string;
     public brand: string;
     public os: string;
-    public releaseDate: Int16Array;
+    public releaseDate: number;
     public salerAvatar: string;
     public saler: string;
     public description: string;
-    public saleGender: string;
+    public salerGender: string;
     public salerCity: string;
     public salerCountry: string;
     public phone: string;
